@@ -26,7 +26,6 @@ void main() {
   buffer = new CanvasElement(width: canvasWidth, height: canvasHeight); //to draw: use bufferContext
   canvasContext = canvas.context2D;
   bufferContext = buffer.context2D;
-  loadResources();
   initInput();
   window.onKeyDown.listen(onKeyDown);
   window.onKeyUp.listen(onKeyUp);
