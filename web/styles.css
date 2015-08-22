@@ -6,4 +6,52 @@ html, body {
     margin: 0;
     padding: 0;
     font-family: 'Roboto', sans-serif;
+    background-color: #FFFFCC;
+}
+
+h1 {
+    text-align: center;
+}
+
+h2 {
+    text-align: center;
+}
+
+#header {
+    width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: gray;
+    text-align: center;
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+}
+
+#game {
+    width: 800px;
+    height: 450px;
+    background-color: black;
+    margin: auto;
+    background-image: url("res/backgroundMenu.png");
+    padding: 0px;
+    vertical-align: middle;
+    text-align: center
+}
+
+#start {
+    background-image: url("res/start.png");
+    width: 267px;
+    height: 148px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: -300px;
+
+}
+
+#footer {
+    width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: gray;
+    text-align: center;
 }
