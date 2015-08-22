@@ -36,8 +36,8 @@ class PaperBall extends Throwable {
   PaperBall() : super(0.001, 5);  // 1/1000 progress per millisecond = finished in 1 second
 
   void draw() {
-    buffer.fillStyle = '#F00';
-    buffer.fillRect(425 + target * 200, 200, 50, 50); // paper ball
+    bufferContext.fillStyle = '#F00';
+    bufferContext.fillRect(425 + target * 200, 200, 50, 50); // paper ball
   }
 
 }
