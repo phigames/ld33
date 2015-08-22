@@ -13,6 +13,9 @@ abstract class Throwable {
 
   void update(num delta) {
     progress += speed * delta;
+    if (progress >= 1) {
+      hit();
+    }
   }
 
   void draw();
