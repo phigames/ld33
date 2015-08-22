@@ -46,8 +46,8 @@ class PaperBall extends Throwable {
   }
 
   void draw() {
-    buffer.fillStyle = '#F00';
-    buffer.fillRect(425 + target * 200, 200, 50, 50); // paper ball
+    bufferContext.fillStyle = '#F00';
+    bufferContext.fillRect(425 + target * 200, 200, 50, 50); // paper ball
   }
 
 }
