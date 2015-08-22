@@ -8,6 +8,7 @@ part 'classroom.dart';
 part 'teacher.dart';
 part 'throwable.dart';
 part 'input.dart';
+part 'resources.dart';
 
 num loopTime;
 int canvasWidth, canvasHeight;
