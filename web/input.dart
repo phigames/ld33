@@ -4,6 +4,8 @@ bool leftKey, rightKey;
 bool leftMouse;
 int mouseX, mouseY;
 
+// test
+
 void initInput(){
   leftKey = false;
   rightKey = false;
