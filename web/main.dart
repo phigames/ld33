@@ -21,7 +21,7 @@ void main() {
   canvas = querySelector('#canvas');
   canvasWidth = canvas.width;
   canvasHeight = canvas.height;
-  buffer = new CanvasElement(width: canvasWidth, height: canvasHeight);
+  buffer = new CanvasElement(width: canvasWidth, height: canvasHeight); //to draw: use bufferContext
   canvasContext = canvas.context2D;
   bufferContext = buffer.context2D;
   gamestate = new GamestatePlaying();

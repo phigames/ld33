@@ -32,14 +32,14 @@ h2 {
     height: 450px;
     background-color: black;
     margin: auto;
-    'background-image: url("res/backgroundMenu.png");
+    background-image: url("res/backgroundMenu.png");
     padding: 0px;
     vertical-align: middle;
     text-align: center
 }
 
 #start {
-    'background-image: url("res/start.png");
+    background-image: url("res/start.png");
     width: 267px;
     height: 148px;
     margin-left: auto;
