@@ -5,6 +5,8 @@ Map<String, AudioElement> sounds;
 
 void loadResources() {
   images = new Map<String, ImageElement>();
-  //images['test'] = new ImageElement(src: 'res/start.png');
+  images['teacherBody'] = new ImageElement(src: 'res/teacherBody.png');
+  images['teacherHead'] = new ImageElement(src: 'res/teacherHead.png');
+  images['teacherArm'] = new ImageElement(src: 'res/teacherArm.png');
   sounds = new Map<String, AudioElement>();
 }
