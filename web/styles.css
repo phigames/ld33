@@ -6,7 +6,7 @@ html, body {
     margin: 0;
     padding: 0;
     font-family: 'Roboto', sans-serif;
-    background-color: #FFFFCC;
+    background-color: #FEFFA4;
 }
 
 h1 {
@@ -21,21 +21,22 @@ h2 {
     width: 800px;
     margin-left: auto;
     margin-right: auto;
-    background-color: gray;
+    background-color: #898A59;
     text-align: center;
     margin-bottom: 10px;
     padding-bottom: 10px;
+    border: solid black 3px;
 }
 
 #game {
     width: 800px;
     height: 450px;
-    background-color: black;
     margin: auto;
     background-image: url("res/backgroundMenu.png");
     padding: 0px;
     vertical-align: middle;
     text-align: center
+    border: solid black 3px;
 }
 
 #start {
@@ -52,6 +53,8 @@ h2 {
     width: 800px;
     margin-left: auto;
     margin-right: auto;
-    background-color: gray;
+    background-color: #898A59;
     text-align: center;
+    border: solid black 3px;
+    margin-top: 10px;
 }

@@ -7,6 +7,7 @@ part 'gamestate.dart';
 part 'classroom.dart';
 part 'teacher.dart';
 part 'throwable.dart';
+part 'input.dart';
 
 num loopTime;
 int canvasWidth, canvasHeight;
