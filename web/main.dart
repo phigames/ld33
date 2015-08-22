@@ -1,8 +1,48 @@
-// Copyright (c) 2015, <your name>. All rights reserved. Use of this source code
-// is governed by a BSD-style license that can be found in the LICENSE file.
+library ld33;
 
 import 'dart:html';
+import 'dart:math';
+
+part 'gamestate.dart';
+part 'classroom.dart';
+part 'teacher.dart';
+part 'throwable.dart';
+
+num loopTime;
+int canvasWidth, canvasHeight;
+CanvasElement canvas, buffer;
+CanvasRenderingContext2D canvasContext, bufferContext;
+Gamestate gamestate;
+Classroom classroom;
+Random random;
 
 void main() {
-  querySelector('#output').text = 'Your Dart app is running.';
+  loopTime = -1;
+  canvas = querySelector('#canvas');
+  canvasWidth = canvas.width;
+  canvasHeight = canvas.height;
+  buffer = new CanvasElement(width: canvasWidth, height: canvasHeight);
+  canvasContext = canvas.context2D;
+  bufferContext = buffer.context2D;
+  gamestate = new GamestatePlaying();
+  random = new Random();
+  requestFrame();
+}
+
+void frame(num time) {
+  if (loopTime == -1) {
+    loopTime = time;
+  } else {
+    gamestate.update(time - loopTime);
+    bufferContext.clearRect(0, 0, canvasWidth, canvasHeight);
+    gamestate.draw();
+    canvasContext.clearRect(0, 0, canvasWidth, canvasHeight);
+    canvasContext.drawImage(buffer, 0, 0);
+    loopTime = time;
+  }
+  requestFrame();
+}
+
+void requestFrame() {
+  window.animationFrame.then(frame);
 }
