@@ -26,6 +26,12 @@ void main() {
   buffer = new CanvasElement(width: canvasWidth, height: canvasHeight); //to draw: use bufferContext
   canvasContext = canvas.context2D;
   bufferContext = buffer.context2D;
+  initInput();
+  window.onKeyDown.listen(onKeyDown);
+  window.onKeyUp.listen(onKeyUp);
+  canvas.onMouseDown.listen(onMouseDown);
+  canvas.onMouseUp.listen(onMouseUp);
+  canvas.onMouseMove.listen(onMouseMove);
   gamestate = new GamestatePlaying();
   random = new Random();
   requestFrame();

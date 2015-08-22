@@ -16,6 +16,8 @@ abstract class Throwable {
     if (progress >= 1) {
       if (leftKey == false || rightKey == false) {
         hit();
+        buffer.fillStyle = '#F00';
+        buffer.fillRect(10, 10, 50, 50); // TEST
       }
     }
   }

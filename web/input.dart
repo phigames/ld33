@@ -21,10 +21,10 @@ void onKeyDown(KeyboardEvent event) {
 }
 
 void onKeyUp(KeyboardEvent event) {
-  if (event.keyCode == keyCode.LEFT) {
-    leftKey = true;
-  } else if (event.keyCode == keyCode.RIGHT) {
-    rightKey = true;
+  if (event.keyCode == KeyCode.LEFT) {
+    leftKey = false;
+  } else if (event.keyCode == KeyCode.RIGHT) {
+    rightKey = false;
   }
 }
 
