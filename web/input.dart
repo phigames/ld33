@@ -13,17 +13,17 @@ void initInput(){
 }
 
 void onKeyDown(KeyboardEvent event) {
-  if (event.keyCode == KeyCode.LEFT) {
+  if (event.keyCode == KeyCode.LEFT || event.keyCode == KeyCode.A) {
     leftKey = true;
-  } else if (event.keyCode == KeyCode.RIGHT) {
+  } else if (event.keyCode == KeyCode.RIGHT || event.keyCode == KeyCode.D) {
     rightKey = true;
   }
 }
 
 void onKeyUp(KeyboardEvent event) {
-  if (event.keyCode == KeyCode.LEFT) {
+  if (event.keyCode == KeyCode.LEFT || event.keyCode == KeyCode.A) {
     leftKey = false;
-  } else if (event.keyCode == KeyCode.RIGHT) {
+  } else if (event.keyCode == KeyCode.RIGHT || event.keyCode == KeyCode.D) {
     rightKey = false;
   }
 }
@@ -41,6 +41,6 @@ void onMouseUp(MouseEvent event) {
 }
 
 void onMouseMove(MouseEvent event) {
-  mouseX = event.client.x - canvas.offsetLeft + window.scrollX; //Get the horizontal coordinate --> ABER was macht dr räscht? :D
-  mouseY = event.client.y - canvas.offsetTop + window.scrollY; //Get the vertical coordinate
+  mouseX = event.layer.x; //Get the horizontal coordinate
+  mouseY = event.layer.y; //Get the vertical coordinate
 }

@@ -16,9 +16,9 @@ class Classroom {
   }
 
   void draw() {
-    teacher.draw();
     bufferContext.fillStyle = '#ACF';
     bufferContext.fillRect(0, 0, canvasWidth, canvasHeight);  // classroom background
+    teacher.draw();
     bufferContext.fillStyle = '#0F0';
     bufferContext.fillRect(100, 350, attentiveness / 100 * 600, 20);  // attentiveness bar
     }
