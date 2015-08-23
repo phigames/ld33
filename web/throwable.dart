@@ -27,7 +27,6 @@ abstract class Throwable {
       hit();
       dead = true;
     }
-    print(progress);
   }
 
   void draw();
