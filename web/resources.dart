@@ -8,5 +8,6 @@ void loadResources() {
   images['teacherBody'] = new ImageElement(src: 'res/teacherBody.png');
   images['teacherHead'] = new ImageElement(src: 'res/teacherHead.png');
   images['teacherArm'] = new ImageElement(src: 'res/teacherArm.png');
+  images['paperBall'] = new ImageElement(src: 'res/paperBall.png');
   sounds = new Map<String, AudioElement>();
 }
