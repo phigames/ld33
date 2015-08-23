@@ -12,7 +12,7 @@ abstract class Throwable {
     progress = 0;
     target = random.nextInt(3) - 1;
     dead = false;
-    speed = time/1000;
+    speed = 1/(1000*time);
   }
 
   void hit() {
@@ -27,6 +27,7 @@ abstract class Throwable {
       hit();
       dead = true;
     }
+    print(progress);
   }
 
   void draw();
@@ -36,14 +37,24 @@ abstract class Throwable {
 class PaperBall extends Throwable {
 
   int target;   // -1 = left, 0 = center, 1 = right
+  num rotationsSpeed;
 
-  PaperBall() : super(1.5, 5);  // 1/1000 progress per millisecond = finished in 1 second
+  PaperBall() : super(1, 5) {
+    rotationsSpeed = random.nextDouble()*8-4;
+  }
 
   void draw() {
     num w = 70 / ( 3* (progress + 0.1)) + 20;
     num h = w / 143 * 117;
-    bufferContext.fillStyle = '#F00';
-    bufferContext.drawImageScaled(images['paperBall'], 400 + target * 200 - w/2 , 100 * (3*progress - 2) * (3*progress - 2) + 200, w, h);
+    num x = 400 + target * 200;
+    num y = 100 * (3*progress - 2) * (3*progress - 2) + 200;
+
+    bufferContext.save();
+    bufferContext.translate(x,y);
+    bufferContext.rotate(rotationsSpeed*progress);
+    bufferContext.translate(-x, -y);
+    bufferContext.drawImageScaled(images['paperBall'], x - w/2 , y -h/2, w, h);
+    bufferContext.restore();
   }
 
 }
