@@ -37,7 +37,7 @@ void main() {
   gamestate = new GamestatePlaying();
   random = new Random();
 
-  start();      /////////
+  //start();      /////////
 
   querySelector('#start').onClick.listen((e) => start());
 }
@@ -45,6 +45,7 @@ void main() {
 void start() {
   print('start');
   // make canvas visible
+  canvas.style.display = 'block';
   requestFrame();
 }
 
