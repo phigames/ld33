@@ -35,10 +35,10 @@ class Classroom {
     }
     if (leftMouse) {
       if (mouseX > 33 && mouseX < 186 && mouseY > 0 && mouseY < 132) {
-        //action0
-      } else if (mouseX > 186 && mouseX < 306 && mouseY > 0 && mouseY < 132) {
+        teacher.act(new ActionWarning());
+        } else if (mouseX > 186 && mouseX < 306 && mouseY > 0 && mouseY < 132) {
         //action1
-      } else if (mouseX > 339 && mouseX < 459 && mouseY > 0 && mouseY < 132) {
+        } else if (mouseX > 339 && mouseX < 459 && mouseY > 0 && mouseY < 132) {
         //action2
       } else if (mouseX > 492 && mouseX < 612 && mouseY > 0 && mouseY < 132) {
         //action3
