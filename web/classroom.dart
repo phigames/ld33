@@ -24,7 +24,7 @@ class Classroom {
     attentiveness -= delta * 0.01; //per second: - 10
     if (lastThrow > 2000) {
       lastThrow = 0;
-      throwables.add(new PaperBall());
+      throwables.add(new Sandwich());
     }
     for (int i = 0; i < throwables.length; i++) {
       throwables[i].update(delta);

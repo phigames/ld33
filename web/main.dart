@@ -36,6 +36,15 @@ void main() {
   canvas.onMouseMove.listen(onMouseMove);
   gamestate = new GamestatePlaying();
   random = new Random();
+
+  start();      /////////
+
+  querySelector('#start').onClick.listen((e) => start());
+}
+
+void start() {
+  print('start');
+  // make canvas visible
   requestFrame();
 }
 

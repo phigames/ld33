@@ -36,10 +36,10 @@ abstract class Throwable {
 class PaperBall extends Throwable {
 
   int target;   // -1 = left, 0 = center, 1 = right
-  num rotationsSpeed;
+  num rotationSpeed;
 
   PaperBall() : super(1, 5) {
-    rotationsSpeed = random.nextDouble()*8-4;
+    rotationSpeed = random.nextDouble()*8-4;
   }
 
   void draw() {
@@ -50,9 +50,34 @@ class PaperBall extends Throwable {
 
     bufferContext.save();
     bufferContext.translate(x,y);
-    bufferContext.rotate(rotationsSpeed*progress);
+    bufferContext.rotate(rotationSpeed*progress);
     bufferContext.translate(-x, -y);
     bufferContext.drawImageScaled(images['paperBall'], x - w/2 , y -h/2, w, h);
+    bufferContext.restore();
+  }
+
+}
+
+class Sandwich extends Throwable {
+
+  int target;   // -1 = left, 0 = center, 1 = right
+  num rotationSpeed;
+
+  Sandwich() : super(1, 5) {
+    rotationSpeed = random.nextDouble()*8-4;
+  }
+
+  void draw() {
+    num w = 70 / ( 3* (progress + 0.1)) + 50;
+    num h = w / 145 * 113;
+    num x = 400 + target * 200;
+    num y = 100 * (3*progress - 2) * (3*progress - 2) + 200;
+
+    bufferContext.save();
+    bufferContext.translate(x,y);
+    bufferContext.rotate(rotationSpeed*progress);
+    bufferContext.translate(-x, -y);
+    bufferContext.drawImageScaled(images['sandwich'], x - w/2 , y -h/2, w, h);
     bufferContext.restore();
   }
 
