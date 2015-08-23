@@ -42,10 +42,11 @@ class Teacher {
     bufferContext.rotate(sin(animateArm * 0.8) * 0.1);
     bufferContext.translate(-(430 + animatePosition * 150), -310);
     bufferContext.drawImage(images['teacherUpperArm'], 425 + animatePosition * 150, 275);
-    // lower arm
+    // lower arm, chalk
     bufferContext.translate(520 + animatePosition * 150, 310);
     bufferContext.rotate(sin(animateArm) * 0.2);
     bufferContext.translate(-(520 + animatePosition * 150), -310);
+    bufferContext.drawImageScaled(images['chalk'], 483 + animatePosition * 150, 207, 43, 32);
     bufferContext.drawImage(images['teacherArm'], 500 + animatePosition * 150, 208);
     bufferContext.restore();
   }
