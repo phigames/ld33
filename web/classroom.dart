@@ -33,18 +33,33 @@ class Classroom {
         i--;
       }
     }
-    if (leftMouse) {
-      if (mouseX > 33 && mouseX < 186 && mouseY > 0 && mouseY < 132) {
+    if (mouseX > 33 && mouseX < 153 && mouseY > 0 && mouseY < 132) {
+      canvas.style.cursor = 'pointer';
+      if (leftMouse) {
         teacher.act(new ActionWarning());
-        } else if (mouseX > 186 && mouseX < 306 && mouseY > 0 && mouseY < 132) {
-        //action1
-        } else if (mouseX > 339 && mouseX < 459 && mouseY > 0 && mouseY < 132) {
-        //action2
-      } else if (mouseX > 492 && mouseX < 612 && mouseY > 0 && mouseY < 132) {
-        //action3
-      } else if (mouseX > 645 && mouseX < 765 && mouseY > 0 && mouseY < 132) {
-        //action4
       }
+    } else if (mouseX > 186 && mouseX < 306 && mouseY > 0 && mouseY < 132) {
+      canvas.style.cursor = 'pointer';
+      if (leftMouse) {
+        teacher.act(new ActionFingernail());
+      }
+    } else if (mouseX > 339 && mouseX < 459 && mouseY > 0 && mouseY < 132) {
+      canvas.style.cursor = 'pointer';
+      if (leftMouse) {
+        teacher.act(new ActionShout());
+      }
+    } else if (mouseX > 492 && mouseX < 612 && mouseY > 0 && mouseY < 132) {
+      canvas.style.cursor = 'pointer';
+      if (leftMouse) {
+       teacher.act(new ActionChalk());
+      }
+    } else if (mouseX > 645 && mouseX < 765 && mouseY > 0 && mouseY < 132) {
+      canvas.style.cursor = 'pointer';
+      if (leftMouse) {
+        teacher.act(new ActionMonster());
+      }
+    } else {
+      canvas.style.cursor = 'auto';
     }
   }
 

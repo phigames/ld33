@@ -10,6 +10,7 @@ void loadResources() {
   images['teacherHead'] = new ImageElement(src: 'res/teacherHead.png');
   images['teacherUpperArm'] = new ImageElement(src: 'res/teacherUpperArm.png');
   images['teacherArm'] = new ImageElement(src: 'res/teacherArm.png');
+  images['monster'] = new ImageElement(src: 'res/monster.png');
   images['chalk'] = new ImageElement(src: 'res/chalk.png');
   images['paperBall'] = new ImageElement(src: 'res/paperBall.png');
   images['sandwich'] = new ImageElement(src: 'res/sandwich.png');

@@ -5,9 +5,10 @@ abstract class Action {
   num progress;   // 0 = just started, 1 = finished
   num speed;      // progress per millisecond
   num silence;
+  num price;
   bool dead;
 
-  Action(num time, this.silence) {
+  Action(num time, this.silence, this.price) {
     progress = 0;
     speed = 1 / (1000 * time);
     dead = false;
@@ -31,7 +32,7 @@ abstract class Action {
 
 class ActionWarning extends Action {
 
-  ActionWarning() : super(2, 10);
+  ActionWarning() : super(2, 10, 20);
 
   void draw() {
     bufferContext.save();
@@ -54,7 +55,7 @@ class ActionWarning extends Action {
 
 class ActionFingernail extends Action {
 
-  ActionFingernail() : super(1.5, 20);
+  ActionFingernail() : super(1.5, 20, 30);
 
   void draw() {
     bufferContext.save();
@@ -77,7 +78,7 @@ class ActionFingernail extends Action {
 
 class ActionShout extends Action {
 
-  ActionShout() : super(2, 20);
+  ActionShout() : super(2, 20, 50);
 
   void draw() {
     bufferContext.save();
@@ -105,27 +106,53 @@ class ActionShout extends Action {
 
 class ActionChalk extends Action {
 
-  ActionChalk() : super(2, 20);
+  ActionChalk() : super(1, 20, 70);
 
   void draw() {
     bufferContext.save();
     bufferContext.drawImage(images['teacherBody'], 320, 250);
     bufferContext.translate(390, 270);
-    bufferContext.rotate(progress);
+    bufferContext.rotate(max(-progress * 4 + 0.4, -0.4));
     bufferContext.translate(-390, -270);
     bufferContext.drawImage(images['teacherHead'], 350, 170);
     bufferContext.restore();
     bufferContext.save();
     // upper arm
     bufferContext.translate(430, 310);
-    bufferContext.rotate(-progress * 0.5 + 1.2);
+    bufferContext.rotate(max(-progress * 5 + 0.5, -1.2));
     bufferContext.translate(-430, -310);
     bufferContext.drawImage(images['teacherUpperArm'], 425, 275);
     // lower arm
     bufferContext.translate(520, 310);
-    bufferContext.rotate(-progress * 0.3 + 1.5);
+    bufferContext.rotate(max(-progress * 1.2 + 1.2, 0.7));
+    print(max(-progress * 1.2 + 1.2, 0.7));
     bufferContext.translate(-520, -310);
+    num p = max(progress - 0.3, 0);
+    bufferContext.drawImageScaled(images['chalk'], 483 - p * 600, 207 + p * 400, 43 + p * 86, 32 + p * 64);
     bufferContext.drawImage(images['teacherArm'], 500, 208);
+    bufferContext.restore();
+  }
+
+}
+
+class ActionMonster extends Action {
+
+  ActionMonster() : super(3, 10, 20);
+
+  void draw() {
+    bufferContext.save();
+    bufferContext.drawImage(images['teacherBody'], 320, 250);
+    bufferContext.drawImage(images['monster'], 320, 100);
+    // upper arm
+    bufferContext.translate(430, 310);
+    bufferContext.rotate(1);
+    bufferContext.translate(-430, -310);
+    bufferContext.drawImage(images['teacherUpperArm'], 425, 275);
+    // lower arm
+    bufferContext.translate(520, 310);
+    bufferContext.rotate(2.2);
+    bufferContext.translate(-520, -310);
+    bufferContext.drawImage(images['teacherArm'], 505, 208);
     bufferContext.restore();
   }
 

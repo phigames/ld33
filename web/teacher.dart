@@ -13,7 +13,7 @@ class Teacher {
     position = 0;
     animatePosition = 0;
     animateArm = 0;
-    action = new ActionShout();
+    action = null;
   }
 
   void damage(num coolnessDeduction) {
