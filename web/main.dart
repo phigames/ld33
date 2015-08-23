@@ -34,7 +34,7 @@ void main() {
   canvas.onMouseDown.listen(onMouseDown);
   canvas.onMouseUp.listen(onMouseUp);
   canvas.onMouseMove.listen(onMouseMove);
-  gamestate = new GamestatePlaying();
+  gamestate = new GamestateEnd();
   random = new Random();
   querySelector('#start').onClick.listen((e) => start());
 }
