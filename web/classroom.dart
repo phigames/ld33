@@ -33,10 +33,29 @@ class Classroom {
         i--;
       }
     }
+    if (leftMouse) {
+      if (mouseX > 33 && mouseX < 186 && mouseY > 0 && mouseY < 132) {
+        //action0
+      } else if (mouseX > 186 && mouseX < 306 && mouseY > 0 && mouseY < 132) {
+        //action1
+      } else if (mouseX > 339 && mouseX < 459 && mouseY > 0 && mouseY < 132) {
+        //action2
+      } else if (mouseX > 492 && mouseX < 612 && mouseY > 0 && mouseY < 132) {
+        //action3
+      } else if (mouseX > 645 && mouseX < 765 && mouseY > 0 && mouseY < 132) {
+        //action4
+      }
+    }
   }
 
   void draw() {
     bufferContext.drawImage(images['background'], 0, 0);
+    bufferContext.drawImage(images['action0'], 33, 0);
+    bufferContext.drawImage(images['action1'], 186, 0);
+    bufferContext.drawImage(images['action2'], 339, 0);
+    bufferContext.drawImage(images['action3'], 492, 0);
+    bufferContext.drawImage(images['action4'], 645, 0);
+
     teacher.draw();
     bufferContext.fillStyle = '#0F0';
     bufferContext.fillRect(100, 350, attentiveness / 100 * 600, 20);  // attentiveness bar
