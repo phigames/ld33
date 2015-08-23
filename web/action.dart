@@ -32,7 +32,10 @@ abstract class Action {
 
 class ActionWarning extends Action {
 
-  ActionWarning() : super(2, 10, 20);
+  ActionWarning() : super(2, 10, 20) {
+    sounds['warning'].currentTime = 0;
+    sounds['warning'].play();
+  }
 
   void draw() {
     bufferContext.save();
@@ -55,7 +58,10 @@ class ActionWarning extends Action {
 
 class ActionFingernail extends Action {
 
-  ActionFingernail() : super(1.5, 20, 30);
+  ActionFingernail() : super(1.5, 20, 30) {
+    sounds['fingernail'].currentTime = 0;
+    sounds['fingernail'].play();
+  }
 
   void draw() {
     bufferContext.save();
@@ -78,7 +84,10 @@ class ActionFingernail extends Action {
 
 class ActionShout extends Action {
 
-  ActionShout() : super(2, 20, 50);
+  ActionShout() : super(2, 20, 50) {
+    sounds['shout'].currentTime = 0;
+    sounds['shout'].play();
+  }
 
   void draw() {
     bufferContext.save();
@@ -137,7 +146,10 @@ class ActionChalk extends Action {
 
 class ActionMonster extends Action {
 
-  ActionMonster() : super(3, 10, 20);
+  ActionMonster() : super(3, 10, 20) {
+    sounds['monster'].currentTime = 0;
+    sounds['monster'].play();
+  }
 
   void draw() {
     bufferContext.save();
