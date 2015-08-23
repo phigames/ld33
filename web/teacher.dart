@@ -6,15 +6,14 @@ class Teacher {
   int position;   // -1 = left, 0 = center, 1 = right
   num animatePosition;
   num animateArm;
-  List<Action> actions;
+  Action action;
 
   Teacher() {
     coolness = 50;
     position = 0;
     animatePosition = 0;
     animateArm = 0;
-    actions = new List<Action>();
-    actions.add(new ActionWarning());
+    action = new ActionShout();
   }
 
   void damage(num coolnessDeduction) {
@@ -31,17 +30,16 @@ class Teacher {
     }
     animatePosition += (position - animatePosition) / 50 * delta;
     animateArm += delta / 100;
-    for (int i = 0; i < actions.length; i++) {
-      actions[i].update(delta);
-      if (actions[i].dead) {
-        actions.removeAt(i);
-        i--;
+    if (action != null) {
+      action.update(delta);
+      if (action.dead) {
+        action = null;
       }
     }
   }
 
   void draw() {
-    if (actions.length == 0) {
+    if (action == null) {
       bufferContext.save();
       bufferContext.translate(400, 450);
       bufferContext.rotate(animatePosition * 0.1);
@@ -61,9 +59,7 @@ class Teacher {
       bufferContext.drawImage(images['teacherArm'], 500 + animatePosition * 150, 208);
       bufferContext.restore();
     } else {
-      for (int i = 0; i < actions.length; i++) {
-        actions[i].draw();
-      }
+      action.draw();
     }
   }
 
