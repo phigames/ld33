@@ -8,10 +8,11 @@ abstract class Throwable {
   num damage;
   bool dead;
 
-  Throwable(this.speed, this.damage) {
+  Throwable(num time, this.damage) { //time:seconds
     progress = 0;
     target = random.nextInt(3) - 1;
     dead = false;
+    speed = time/1000;
   }
 
   void hit() {
@@ -36,11 +37,11 @@ class PaperBall extends Throwable {
 
   int target;   // -1 = left, 0 = center, 1 = right
 
-  PaperBall() : super(0.0003, 5);  // 1/1000 progress per millisecond = finished in 1 second
+  PaperBall() : super(1.5, 5);  // 1/1000 progress per millisecond = finished in 1 second
 
   void draw() {
     bufferContext.fillStyle = '#F00';
-    bufferContext.fillRect(425 + target * 200, 200, 50, 50); // paper ball
+    bufferContext.fillRect(425 + target * 200, 100 * (3*progress - 2) * (3*progress - 2) + 200, 70 / ( 3* (progress + 0.1)) + 20, 70 / (3 * (progress + 0.1)) + 20); // paper ball
   }
 
 }
