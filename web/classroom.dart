@@ -4,14 +4,18 @@ class Classroom {
 
   Teacher teacher;
   num attentiveness;  // 0-100
-  List<Throwable> throwables = new List<Throwable>();
+  List<Throwable> throwables;
   int lastThrow;
-  int throwTest;
 
   Classroom() {
     teacher = new Teacher();
+    throwables = new List<Throwable>();
     attentiveness = 100;
     lastThrow = 0;
+  }
+
+  void silence(num attentivenessDeduction) {
+    attentiveness -= attentivenessDeduction;
   }
 
   void update(num delta) {
