@@ -24,8 +24,10 @@ label {
 
 #header {
     width: 800px;
+    margin-top: 5px;
     margin-left: auto;
     margin-right: auto;
+    margin-bottom: 10px;
     background-color: #898A59;
     text-align: center;
     margin-bottom: 10px;
@@ -36,22 +38,24 @@ label {
 #game {
     width: 800px;
     height: 450px;
-    margin: auto;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 65;
     background-image: url("res/backgroundMenu.png");
     padding: 0px;
     vertical-align: middle;
-    text-align: center
+    text-align: center;
     border: solid black 3px;
+    position:relative;
 }
 
 #start {
     background-image: url("res/start.png");
-    width: 267px;
-    height: 148px;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: -300px;
-
+    width: 200px;
+    height: 100px;
+    position: absolute;
+    left:300px;
+    top: 200px;
 }
 
 #footer {
