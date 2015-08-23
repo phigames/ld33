@@ -20,6 +20,12 @@ class Teacher {
     coolness -= coolnessDeduction;
   }
 
+  void act(Action act) {
+    if (action == null) {
+      action = act;
+    }
+  }
+
   void update(num delta) {
     if (leftKey) {
       position = -1;
