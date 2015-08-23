@@ -15,6 +15,7 @@ void loadResources() {
   images['paperBall'] = new ImageElement(src: 'res/paperBall.png');
   images['sandwich'] = new ImageElement(src: 'res/sandwich.png');
   images['book'] = new ImageElement(src: 'res/book.png');
+  images['poof'] = new ImageElement(src: 'res/poof.png');
   images['action0'] = new ImageElement(src: 'res/action0.png');
   images['action1'] = new ImageElement(src: 'res/action1.png');
   images['action2'] = new ImageElement(src: 'res/action2.png');

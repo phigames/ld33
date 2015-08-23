@@ -6,12 +6,14 @@ class Classroom {
   num attentiveness;  // 0-100
   List<Throwable> throwables;
   int lastThrow;
+  List<Poof> poofs;
 
   Classroom() {
     teacher = new Teacher();
     throwables = new List<Throwable>();
     attentiveness = 100;
     lastThrow = 0;
+    poofs = new List<Poof>();
   }
 
   void silence(num attentivenessDeduction) {
@@ -29,6 +31,7 @@ class Classroom {
     for (int i = 0; i < throwables.length; i++) {
       throwables[i].update(delta);
       if (throwables[i].dead) {
+        poofs.add(new Poof(throwables[i].x, throwables[i].y));
         throwables.removeAt(i);
         i--;
       }
@@ -61,6 +64,13 @@ class Classroom {
     } else {
       canvas.style.cursor = 'auto';
     }
+    for (int i = 0; i < poofs.length; i++) {
+      poofs[i].update(delta);
+      if (poofs[i].dead) {
+        poofs.removeAt(i);
+        i--;
+      }
+    }
   }
 
   void draw() {
@@ -79,5 +89,36 @@ class Classroom {
     for (int i = 0; i < throwables.length; i++) {
       throwables[i].draw();
     }
+    for (int i = 0; i < poofs.length; i++) {
+      poofs[i].draw();
+    }
   }
+}
+
+class Poof {
+
+  num x, y;
+  num time;
+  bool dead;
+
+  Poof(this.x, this.y) {
+    time = 0;
+    dead = false;
+  }
+
+  void update(num delta) {
+    time += delta;
+    if (time >= 300) {
+      dead = true;
+    }
+  }
+
+  void draw() {
+    num w = (time + 100) / 2;
+    num h = w / 206 * 202;
+    bufferContext.globalAlpha = 1 - time / 300;
+    bufferContext.drawImageScaled(images['poof'], x - w / 2, y - h / 2, w, h);
+    bufferContext.globalAlpha = 1;
+  }
+
 }

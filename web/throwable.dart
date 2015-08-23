@@ -7,12 +7,14 @@ abstract class Throwable {
   int target;     // -1 = left, 0 = center, 1 = right
   num damage;
   bool dead;
+  num x, y;
 
   Throwable(num time, this.damage) { //time:seconds
     progress = 0;
     target = random.nextInt(3) - 1;
     dead = false;
     speed = 1/(1000*time);
+    x = y = 0;
   }
 
   void hit() {
@@ -45,8 +47,8 @@ class PaperBall extends Throwable {
   void draw() {
     num w = 70 / ( 3* (progress + 0.1)) + 20;
     num h = w / 143 * 117;
-    num x = 400 + target * 200;
-    num y = 100 * (3*progress - 2) * (3*progress - 2) + 200;
+    x = 400 + target * 200;
+    y = 100 * (3*progress - 2) * (3*progress - 2) + 200;
 
     bufferContext.save();
     bufferContext.translate(x,y);
@@ -70,8 +72,8 @@ class Sandwich extends Throwable {
   void draw() {
     num w = 70 / ( 3* (progress + 0.1)) + 50;
     num h = w / 145 * 113;
-    num x = 400 + target * 200;
-    num y = 100 * (3*progress - 2) * (3*progress - 2) + 200;
+    x = 400 + target * 200;
+    y = 100 * (3*progress - 2) * (3*progress - 2) + 200;
 
     bufferContext.save();
     bufferContext.translate(x,y);

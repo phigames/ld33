@@ -36,15 +36,12 @@ void main() {
   canvas.onMouseMove.listen(onMouseMove);
   gamestate = new GamestatePlaying();
   random = new Random();
-
-  //start();      /////////
-
   querySelector('#start').onClick.listen((e) => start());
 }
 
 void start() {
   print('start');
-  // make canvas visible
+  querySelector('#start').style.display = 'none';
   canvas.style.display = 'block';
   requestFrame();
 }
