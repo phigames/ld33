@@ -20,6 +20,8 @@ abstract class Throwable {
   void hit() {
     if (target == classroom.teacher.position) {
       classroom.teacher.damage(damage);
+      sounds['ouch'].currentTime = 0;
+      sounds['ouch'].play();
     }
   }
 

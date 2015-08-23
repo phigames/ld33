@@ -7,6 +7,7 @@ class Classroom {
   List<Throwable> throwables;
   int lastThrow;
   List<Poof> poofs;
+  AudioElement currentAttentivenessSound;
 
   Classroom() {
     teacher = new Teacher();
@@ -16,14 +17,17 @@ class Classroom {
     poofs = new List<Poof>();
   }
 
-  void silence(num attentivenessDeduction) {
-    attentiveness -= attentivenessDeduction;
+  void silence(num attentivenessAddition) {
+    attentiveness += attentivenessAddition;
+    if (attentiveness > 100) {
+      attentiveness = 100;
+    }
   }
 
   void update(num delta) {
     lastThrow += delta;
     teacher.update(delta);
-    attentiveness -= delta * 0.01; //per second: - 10
+    //attentiveness -= delta * 0.005; //per second: - 10
     if (lastThrow > 2000) {
       lastThrow = 0;
       throwables.add(new Sandwich());
@@ -71,6 +75,15 @@ class Classroom {
         i--;
       }
     }
+      if (currentAttentivenessSound != sounds['attentiveness1'] && attentiveness < 100 / 3) {
+        currentAttentivenessSound = sounds['attentiveness1'];
+      } else if (currentAttentivenessSound != sounds['attentiveness2'] && attentiveness < 200 / 3) {
+        currentAttentivenessSound = sounds['attentiveness2'];
+      } else if (currentAttentivenessSound != sounds['attentiveness3']) {
+        currentAttentivenessSound = sounds['attentiveness3'];
+      }
+    currentAttentivenessSound.loop = true;
+      currentAttentivenessSound.play();
   }
 
   void draw() {

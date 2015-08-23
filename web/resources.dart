@@ -22,4 +22,12 @@ void loadResources() {
   images['action3'] = new ImageElement(src: 'res/action3.png');
   images['action4'] = new ImageElement(src: 'res/action4.png');
   sounds = new Map<String, AudioElement>();
+  sounds['attentiveness1'] = new AudioElement('res/attentiveness1.wav');
+  sounds['attentiveness2'] = new AudioElement('res/attentiveness2.wav');
+  sounds['attentiveness3'] = new AudioElement('res/attentiveness3.wav');
+  sounds['warning'] = new AudioElement('res/warning.wav');
+  sounds['fingernail'] = new AudioElement('res/fingernail.wav');
+  sounds['monster'] = new AudioElement('res/monster.wav');
+  sounds['shout'] = new AudioElement('res/shout.wav');
+  sounds['ouch'] = new AudioElement('res/ouch.wav');
 }
