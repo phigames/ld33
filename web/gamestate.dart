@@ -90,7 +90,7 @@ class GamestateLost extends Gamestate {
 
     bufferContext.fillStyle = '#A1D42B';
     bufferContext.font = '30px "Special Elite"';
-    bufferContext.fillText('The inattentiveness of your', 180, 100);
+    bufferContext.fillText('The inattention of your', 180, 100);
     bufferContext.fillText('students made you go insane', 180, 150);
     bufferContext.fillStyle = '#A1D42B';
     bufferContext.font = '20px "Special Elite"';

@@ -38,12 +38,12 @@ class Classroom {
   void update(num delta) {
     nextThrow -= delta;
     teacher.update(delta);
-    party(delta * 0.00002 * teacher.coolness);
+    party(delta * 0.00003 * teacher.coolness);
     if (nextThrow <= 0) {
-      nextThrow = 3000 + random.nextDouble() * 2000 - teacher.coolness * 30;
-      if (teacher.coolness < 50) {
+      nextThrow = 3000 + random.nextDouble() * 1000 - teacher.coolness * 30;
+      if (teacher.coolness < 40) {
         throwables.add(new PaperBall());
-      } else if (teacher.coolness < 80) {
+      } else if (teacher.coolness < 70) {
         throwables.add(new Sandwich());
       } else {
         throwables.add(new Book());

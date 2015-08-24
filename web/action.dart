@@ -98,9 +98,9 @@ class ActionFingernail extends Action {
 
 class ActionShout extends Action {
 
-  static const num PRICE = 50;
+  static const num PRICE = 40;
 
-  ActionShout() : super(2, 20) {
+  ActionShout() : super(2, 40) {
     classroom.teacher.damage(PRICE);
     sounds['shout'].currentTime = 0;
     sounds['shout'].play();
@@ -136,7 +136,7 @@ class ActionChalk extends Action {
 
   static const num PRICE = 70;
 
-  ActionChalk() : super(1, 20) {
+  ActionChalk() : super(1, 50) {
     classroom.teacher.damage(PRICE);
   }
 
@@ -173,7 +173,7 @@ class ActionMonster extends Action {
 
   static const num PRICE = 100;
 
-  ActionMonster() : super(3, 10) {
+  ActionMonster() : super(3, 100) {
     classroom.teacher.damage(PRICE);
     classroom.attentiveness = 100;
     classroom.currentAttentivenessSound.pause();
