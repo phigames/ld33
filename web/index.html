@@ -4,7 +4,6 @@
 
 <html>
 <head>
-    <link href='http://fonts.googleapis.com/css?family=Special+Elite' rel='stylesheet' type='text/css'>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -18,15 +17,19 @@
 <body>
     <div id="header">
         <h1>Title</h1>
-        <h2>perhaps subtitle</h2>
+        <h2><a href="#instructions">[show instructions]</a></h2>
     </div>
   <div id="game">
       <div id="start">
+          START
       </div>
+      <label id="loadimages">Loading graphics...</label>
+      <label id="loadsounds">Loading audio...</label>
       <canvas id="canvas" width="800" height="450" style="display:none"></canvas>
   </div>
     <div id="footer">
         something interesting
     </div>
+    <div id="instructions"><img src="res/instructions.png"></div>
 </body>
 </html>

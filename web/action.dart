@@ -5,23 +5,27 @@ abstract class Action {
   num progress;   // 0 = just started, 1 = finished
   num speed;      // progress per millisecond
   num silence;
-  num price;
   bool dead;
 
-  Action(num time, this.silence, this.price) {
+  Action(num time, this.silence) {
     progress = 0;
     speed = 1 / (1000 * time);
     dead = false;
+    hit();
   }
 
   void hit() {
     classroom.silence(silence);
   }
 
+  void onDone();
+
   void update(num delta) {
+    classroom.teacher.position = 0;
     progress += speed * delta;
     if (progress >= 1) {
-      hit();
+      print('done');
+      onDone();
       dead = true;
     }
   }
@@ -32,10 +36,15 @@ abstract class Action {
 
 class ActionWarning extends Action {
 
-  ActionWarning() : super(2, 10, 20) {
+  static const num PRICE = 20;
+
+  ActionWarning() : super(2, 10) {
+    classroom.teacher.damage(PRICE);
     sounds['warning'].currentTime = 0;
     sounds['warning'].play();
   }
+
+  void onDone() { }
 
   void draw() {
     bufferContext.save();
@@ -58,10 +67,15 @@ class ActionWarning extends Action {
 
 class ActionFingernail extends Action {
 
-  ActionFingernail() : super(1.5, 20, 30) {
+  static const num PRICE = 30;
+
+  ActionFingernail() : super(1.5, 20) {
+    classroom.teacher.damage(PRICE);
     sounds['fingernail'].currentTime = 0;
     sounds['fingernail'].play();
   }
+
+  void onDone() { }
 
   void draw() {
     bufferContext.save();
@@ -84,10 +98,15 @@ class ActionFingernail extends Action {
 
 class ActionShout extends Action {
 
-  ActionShout() : super(2, 20, 50) {
+  static const num PRICE = 50;
+
+  ActionShout() : super(2, 20) {
+    classroom.teacher.damage(PRICE);
     sounds['shout'].currentTime = 0;
     sounds['shout'].play();
   }
+
+  void onDone() { }
 
   void draw() {
     bufferContext.save();
@@ -115,7 +134,13 @@ class ActionShout extends Action {
 
 class ActionChalk extends Action {
 
-  ActionChalk() : super(1, 20, 70);
+  static const num PRICE = 70;
+
+  ActionChalk() : super(1, 20) {
+    classroom.teacher.damage(PRICE);
+  }
+
+  void onDone() { }
 
   void draw() {
     bufferContext.save();
@@ -146,9 +171,19 @@ class ActionChalk extends Action {
 
 class ActionMonster extends Action {
 
-  ActionMonster() : super(3, 10, 20) {
+  static const num PRICE = 100;
+
+  ActionMonster() : super(3, 10) {
+    classroom.teacher.damage(PRICE);
+    classroom.attentiveness = 100;
+    classroom.currentAttentivenessSound.pause();
     sounds['monster'].currentTime = 0;
     sounds['monster'].play();
+  }
+
+  void onDone() {
+    classroom.currentAttentivenessSound.pause();
+    gamestate = new GamestateEnd();
   }
 
   void draw() {

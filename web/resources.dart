@@ -1,9 +1,13 @@
 part of ld33;
 
+int imagesLoaded;
+int soundsLoaded;
 Map<String, ImageElement> images;
 Map<String, AudioElement> sounds;
 
 void loadResources() {
+  imagesLoaded = 0;
+  soundsLoaded = 0;
   images = new Map<String, ImageElement>();
   images['background'] = new ImageElement(src: 'res/background.png');
   images['teacherBody'] = new ImageElement(src: 'res/teacherBody.png');
@@ -21,7 +25,12 @@ void loadResources() {
   images['action2'] = new ImageElement(src: 'res/action2.png');
   images['action3'] = new ImageElement(src: 'res/action3.png');
   images['action4'] = new ImageElement(src: 'res/action4.png');
+  images['ear'] = new ImageElement(src: 'res/ear.png');
+  images['glasses'] = new ImageElement(src: 'res/glasses.png');
   images['backgroundMenu'] = new ImageElement(src: 'res/backgroundMenu.png');
+  for (int i = 0; i < images.length; i++) {
+    images.values.elementAt(i).onLoad.first.then((e) => onImageLoaded());
+  }
   sounds = new Map<String, AudioElement>();
   sounds['attentiveness1'] = new AudioElement('res/attentiveness1.wav');
   sounds['attentiveness2'] = new AudioElement('res/attentiveness2.wav');
@@ -31,4 +40,27 @@ void loadResources() {
   sounds['monster'] = new AudioElement('res/monster.wav');
   sounds['shout'] = new AudioElement('res/shout.wav');
   sounds['ouch'] = new AudioElement('res/ouch.wav');
+  for (int i = 0; i < sounds.length; i++) {
+    sounds.values.elementAt(i).onLoadedData.first.then((e) => onSoundLoaded());
+  }
+}
+
+void onImageLoaded() {
+  imagesLoaded++;
+  if (imagesLoaded == images.length) {
+    querySelector('#loadimages').style.display = 'none';
+    if (soundsLoaded == sounds.length) {
+      querySelector('#start').style.display = 'block';
+    }
+  }
+}
+
+void onSoundLoaded() {
+  soundsLoaded++;
+  if (soundsLoaded == sounds.length) {
+    querySelector('#loadsounds').style.display = 'none';
+    if (imagesLoaded == images.length) {
+      querySelector('#start').style.display = 'block';
+    }
+  }
 }
