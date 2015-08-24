@@ -5,7 +5,7 @@ class Classroom {
   Teacher teacher;
   num attentiveness;  // 0-100
   List<Throwable> throwables;
-  int lastThrow;
+  num nextThrow;
   List<Poof> poofs;
   AudioElement currentAttentivenessSound;
 
@@ -13,8 +13,11 @@ class Classroom {
     teacher = new Teacher();
     throwables = new List<Throwable>();
     attentiveness = 100;
-    lastThrow = 0;
+    nextThrow = 3000;
     poofs = new List<Poof>();
+    currentAttentivenessSound = sounds['attentiveness3'];
+    currentAttentivenessSound.loop = true;
+    currentAttentivenessSound.play();
   }
 
   void silence(num attentivenessAddition) {
@@ -24,13 +27,27 @@ class Classroom {
     }
   }
 
+  void party(num attentivenessDeduction) {
+    attentiveness -= attentivenessDeduction;
+    if (attentiveness < 0) {
+      attentiveness = 0;
+      gamestate = new GamestateLost();
+    }
+  }
+
   void update(num delta) {
-    lastThrow += delta;
+    nextThrow -= delta;
     teacher.update(delta);
-    //attentiveness -= delta * 0.005; //per second: - 10
-    if (lastThrow > 2000) {
-      lastThrow = 0;
-      throwables.add(new Sandwich());
+    party(delta * 0.00002 * teacher.coolness);
+    if (nextThrow <= 0) {
+      nextThrow = 3000 + random.nextDouble() * 2000 - teacher.coolness * 30;
+      if (teacher.coolness < 50) {
+        throwables.add(new PaperBall());
+      } else if (teacher.coolness < 80) {
+        throwables.add(new Sandwich());
+      } else {
+        throwables.add(new Book());
+      }
     }
     for (int i = 0; i < throwables.length; i++) {
       throwables[i].update(delta);
@@ -40,29 +57,29 @@ class Classroom {
         i--;
       }
     }
-    if (mouseX > 33 && mouseX < 153 && mouseY > 0 && mouseY < 132) {
+    if (mouseX > 33 && mouseX < 153 && mouseY > 0 && mouseY < 132 && teacher.coolness >= ActionWarning.PRICE) {
       canvas.style.cursor = 'pointer';
-      if (leftMouse) {
+      if (leftMouse && teacher.action == null) {
         teacher.act(new ActionWarning());
       }
-    } else if (mouseX > 186 && mouseX < 306 && mouseY > 0 && mouseY < 132) {
+    } else if (mouseX > 186 && mouseX < 306 && mouseY > 0 && mouseY < 132 && teacher.coolness >= ActionFingernail.PRICE) {
       canvas.style.cursor = 'pointer';
-      if (leftMouse) {
+      if (leftMouse && teacher.action == null) {
         teacher.act(new ActionFingernail());
       }
-    } else if (mouseX > 339 && mouseX < 459 && mouseY > 0 && mouseY < 132) {
+    } else if (mouseX > 339 && mouseX < 459 && mouseY > 0 && mouseY < 132 && teacher.coolness >= ActionShout.PRICE) {
       canvas.style.cursor = 'pointer';
-      if (leftMouse) {
+      if (leftMouse && teacher.action == null) {
         teacher.act(new ActionShout());
       }
-    } else if (mouseX > 492 && mouseX < 612 && mouseY > 0 && mouseY < 132) {
+    } else if (mouseX > 492 && mouseX < 612 && mouseY > 0 && mouseY < 132 && teacher.coolness >= ActionChalk.PRICE) {
       canvas.style.cursor = 'pointer';
-      if (leftMouse) {
+      if (leftMouse && teacher.action == null) {
        teacher.act(new ActionChalk());
       }
-    } else if (mouseX > 645 && mouseX < 765 && mouseY > 0 && mouseY < 132) {
+    } else if (mouseX > 645 && mouseX < 765 && mouseY > 0 && mouseY < 132 && teacher.coolness >= ActionMonster.PRICE) {
       canvas.style.cursor = 'pointer';
-      if (leftMouse) {
+      if (leftMouse && teacher.action == null) {
         teacher.act(new ActionMonster());
       }
     } else {
@@ -75,30 +92,109 @@ class Classroom {
         i--;
       }
     }
+    if (!(gamestate is GamestateEnd)) {
       if (currentAttentivenessSound != sounds['attentiveness1'] && attentiveness < 100 / 3) {
+        currentAttentivenessSound.pause();
         currentAttentivenessSound = sounds['attentiveness1'];
-      } else if (currentAttentivenessSound != sounds['attentiveness2'] && attentiveness < 200 / 3) {
-        currentAttentivenessSound = sounds['attentiveness2'];
-      } else if (currentAttentivenessSound != sounds['attentiveness3']) {
-        currentAttentivenessSound = sounds['attentiveness3'];
+        currentAttentivenessSound.loop = true;
+        currentAttentivenessSound.play();
+        print(1);
       }
-    currentAttentivenessSound.loop = true;
-      currentAttentivenessSound.play();
+      if (currentAttentivenessSound != sounds['attentiveness2'] && attentiveness > 100 / 3 && attentiveness < 200 / 3) {
+        currentAttentivenessSound.pause();
+        currentAttentivenessSound = sounds['attentiveness2'];
+        currentAttentivenessSound.loop = true;
+        currentAttentivenessSound.play();
+        print(2);
+      }
+      if (currentAttentivenessSound != sounds['attentiveness3'] && attentiveness > 200 / 3) {
+        currentAttentivenessSound.pause();
+        currentAttentivenessSound = sounds['attentiveness3'];
+        currentAttentivenessSound.loop = true;
+        currentAttentivenessSound.play();
+        print(3);
+      }
+    } else {
+      currentAttentivenessSound.pause();
+    }
   }
 
   void draw() {
     bufferContext.drawImage(images['background'], 0, 0);
-    bufferContext.drawImage(images['action0'], 33, 0);
-    bufferContext.drawImage(images['action1'], 186, 0);
-    bufferContext.drawImage(images['action2'], 339, 0);
-    bufferContext.drawImage(images['action3'], 492, 0);
-    bufferContext.drawImage(images['action4'], 645, 0);
+    if (teacher.coolness < ActionWarning.PRICE) {
+      bufferContext.globalAlpha = 0.5;
+      bufferContext.fillStyle = '#F00';
+      bufferContext.font = 'bold 15px "Special Elite"';
+      bufferContext.drawImage(images['action0'], 33, 0);
+      bufferContext.globalAlpha = 1;
+      bufferContext.fillText('not cool enough', 33, 145);
+    } else {
+      bufferContext.drawImage(images['action0'], 33, 0);
+    }
+    if (teacher.coolness < ActionFingernail.PRICE) {
+      bufferContext.globalAlpha = 0.5;
+      bufferContext.fillStyle = '#F00';
+      bufferContext.font = 'bold 15px "Special Elite"';
+      bufferContext.drawImage(images['action1'], 186, 0);
+      bufferContext.globalAlpha = 1;
+      bufferContext.fillText('not cool enough', 186, 145);
+    } else {
+      bufferContext.drawImage(images['action1'], 186, 0);
+    }
+    if (teacher.coolness < ActionShout.PRICE) {
+      bufferContext.globalAlpha = 0.5;
+      bufferContext.fillStyle = '#F00';
+      bufferContext.font = 'bold 15px "Special Elite"';
+      bufferContext.drawImage(images['action2'], 339, 0);
+      bufferContext.globalAlpha = 1;
+      bufferContext.fillText('not cool enough', 339, 145);
+    } else {
+      bufferContext.drawImage(images['action2'], 339, 0);
+    }
+    if (teacher.coolness < ActionChalk.PRICE) {
+      bufferContext.globalAlpha = 0.5;
+      bufferContext.fillStyle = '#F00';
+      bufferContext.font = 'bold 15px "Special Elite"';
+      bufferContext.drawImage(images['action3'], 492, 0);
+      bufferContext.globalAlpha = 1;
+      bufferContext.fillText('not cool enough', 492, 145);
+    } else {
+      bufferContext.drawImage(images['action3'], 492, 0);
+    }
+    if (teacher.coolness < ActionMonster.PRICE) {
+      bufferContext.globalAlpha = 0.5;
+      bufferContext.fillStyle = '#F00';
+      bufferContext.font = 'bold 15px "Special Elite"';
+      bufferContext.drawImage(images['action4'], 645, 0);
+      bufferContext.globalAlpha = 1;
+      bufferContext.fillText('not cool enough', 645, 145);
+    } else {
+      bufferContext.drawImage(images['action4'], 645, 0);
+    }
 
     teacher.draw();
-    bufferContext.fillStyle = '#0F0';
-    bufferContext.fillRect(100, 350, attentiveness / 100 * 600, 20);  // attentiveness bar
+    // attentiveness bar
+    if (attentiveness > 200 / 3) {
+      bufferContext.fillStyle = '#0A0';
+    } else if (attentiveness > 100 / 3) {
+      bufferContext.fillStyle = '#AA0';
+    } else {
+      bufferContext.fillStyle = '#A00';
+    }
+    bufferContext.fillRect(30, 370, 20, -attentiveness * 2);
+    bufferContext.strokeStyle = '#FFF';
+    bufferContext.lineWidth = 3;
+    bufferContext.strokeRect(30, 370, 20, -200);
+    bufferContext.drawImage(images['ear'], 10, 340);
+
+    // coolness bar
     bufferContext.fillStyle = '#00F';
-    teacher.draw();
+    bufferContext.fillRect(750, 370, 20, -teacher.coolness * 2);
+    bufferContext.strokeStyle = '#FFF';
+    bufferContext.lineWidth = 3;
+    bufferContext.strokeRect(750, 370, 20, -200);
+    bufferContext.drawImage(images['glasses'], 650, 340);
+
     for (int i = 0; i < throwables.length; i++) {
       throwables[i].draw();
     }

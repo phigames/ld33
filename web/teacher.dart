@@ -9,7 +9,7 @@ class Teacher {
   Action action;
 
   Teacher() {
-    coolness = 50;
+    coolness = 25;
     position = 0;
     animatePosition = 0;
     animateArm = 0;
@@ -18,21 +18,31 @@ class Teacher {
 
   void damage(num coolnessDeduction) {
     coolness -= coolnessDeduction;
-  }
-
-  void act(Action act) {
-    if (action == null) {
-      action = act;
+    if (coolness < 0) {
+      coolness = 0;
     }
   }
 
+  void coolUp(num coolnessAddition) {
+    coolness += coolnessAddition;
+    if (coolness > 100) {
+      coolness = 100;
+    }
+  }
+
+  void act(Action act) {
+    action = act;
+  }
+
   void update(num delta) {
-    if (leftKey) {
-      position = -1;
-    } else if (rightKey) {
-      position = 1;
-    } else {
-      position = 0;
+    if (action == null) {
+      if (leftKey) {
+        position = -1;
+      } else if (rightKey) {
+        position = 1;
+      } else {
+        position = 0;
+      }
     }
     animatePosition += (position - animatePosition) / 50 * delta;
     animateArm += delta / 100;

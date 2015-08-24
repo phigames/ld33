@@ -21,6 +21,8 @@ void loadResources() {
   images['action2'] = new ImageElement(src: 'res/action2.png');
   images['action3'] = new ImageElement(src: 'res/action3.png');
   images['action4'] = new ImageElement(src: 'res/action4.png');
+  images['ear'] = new ImageElement(src: 'res/ear.png');
+  images['glasses'] = new ImageElement(src: 'res/glasses.png');
   images['backgroundMenu'] = new ImageElement(src: 'res/backgroundMenu.png');
   sounds = new Map<String, AudioElement>();
   sounds['attentiveness1'] = new AudioElement('res/attentiveness1.wav');
