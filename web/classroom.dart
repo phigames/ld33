@@ -57,22 +57,22 @@ class Classroom {
         i--;
       }
     }
-    if (mouseX > 33 && mouseX < 153 && mouseY > 0 && mouseY < 132 && teacher.coolness >= ActionWarning.PRICE) {
+    if (mouseX > 33 && mouseX < 153 && mouseY > 0 && mouseY < 132 && teacher.coolness >= ActionWarning.PRICE + 20) {
       canvas.style.cursor = 'pointer';
       if (leftMouse && teacher.action == null) {
         teacher.act(new ActionWarning());
       }
-    } else if (mouseX > 186 && mouseX < 306 && mouseY > 0 && mouseY < 132 && teacher.coolness >= ActionFingernail.PRICE) {
+    } else if (mouseX > 186 && mouseX < 306 && mouseY > 0 && mouseY < 132 && teacher.coolness >= ActionFingernail.PRICE + 20) {
       canvas.style.cursor = 'pointer';
       if (leftMouse && teacher.action == null) {
         teacher.act(new ActionFingernail());
       }
-    } else if (mouseX > 339 && mouseX < 459 && mouseY > 0 && mouseY < 132 && teacher.coolness >= ActionShout.PRICE) {
+    } else if (mouseX > 339 && mouseX < 459 && mouseY > 0 && mouseY < 132 && teacher.coolness >= ActionShout.PRICE + 30) {
       canvas.style.cursor = 'pointer';
       if (leftMouse && teacher.action == null) {
         teacher.act(new ActionShout());
       }
-    } else if (mouseX > 492 && mouseX < 612 && mouseY > 0 && mouseY < 132 && teacher.coolness >= ActionChalk.PRICE) {
+    } else if (mouseX > 492 && mouseX < 612 && mouseY > 0 && mouseY < 132 && teacher.coolness >= ActionChalk.PRICE + 30) {
       canvas.style.cursor = 'pointer';
       if (leftMouse && teacher.action == null) {
        teacher.act(new ActionChalk());
@@ -121,7 +121,7 @@ class Classroom {
 
   void draw() {
     bufferContext.drawImage(images['background'], 0, 0);
-    if (teacher.coolness < ActionWarning.PRICE) {
+    if (teacher.coolness < ActionWarning.PRICE + 20) {
       bufferContext.globalAlpha = 0.5;
       bufferContext.fillStyle = '#F00';
       bufferContext.font = 'bold 15px "Special Elite"';
@@ -131,7 +131,7 @@ class Classroom {
     } else {
       bufferContext.drawImage(images['action0'], 33, 0);
     }
-    if (teacher.coolness < ActionFingernail.PRICE) {
+    if (teacher.coolness < ActionFingernail.PRICE + 20) {
       bufferContext.globalAlpha = 0.5;
       bufferContext.fillStyle = '#F00';
       bufferContext.font = 'bold 15px "Special Elite"';
@@ -141,7 +141,7 @@ class Classroom {
     } else {
       bufferContext.drawImage(images['action1'], 186, 0);
     }
-    if (teacher.coolness < ActionShout.PRICE) {
+    if (teacher.coolness < ActionShout.PRICE + 30) {
       bufferContext.globalAlpha = 0.5;
       bufferContext.fillStyle = '#F00';
       bufferContext.font = 'bold 15px "Special Elite"';
@@ -151,7 +151,7 @@ class Classroom {
     } else {
       bufferContext.drawImage(images['action2'], 339, 0);
     }
-    if (teacher.coolness < ActionChalk.PRICE) {
+    if (teacher.coolness < ActionChalk.PRICE + 30) {
       bufferContext.globalAlpha = 0.5;
       bufferContext.fillStyle = '#F00';
       bufferContext.font = 'bold 15px "Special Elite"';

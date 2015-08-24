@@ -52,7 +52,7 @@ class PaperBall extends Throwable {
 
   PaperBall() : super(1, 5) {
     rotationSpeed = random.nextDouble()*8-4;
-    coolUp = 7;
+    coolUp = 8;
   }
 
   void draw() {
@@ -78,7 +78,7 @@ class Sandwich extends Throwable {
 
   Sandwich() : super(0.9, 7) {
     rotationSpeed = random.nextDouble()*8-4;
-    coolUp = 2;
+    coolUp = 3;
   }
 
   void draw() {

@@ -36,7 +36,7 @@ abstract class Action {
 
 class ActionWarning extends Action {
 
-  static const num PRICE = 20;
+  static const num PRICE = 5;
 
   ActionWarning() : super(2, 10) {
     classroom.teacher.damage(PRICE);
@@ -67,7 +67,7 @@ class ActionWarning extends Action {
 
 class ActionFingernail extends Action {
 
-  static const num PRICE = 30;
+  static const num PRICE = 10;
 
   ActionFingernail() : super(1.5, 20) {
     classroom.teacher.damage(PRICE);
@@ -98,7 +98,7 @@ class ActionFingernail extends Action {
 
 class ActionShout extends Action {
 
-  static const num PRICE = 40;
+  static const num PRICE = 20;
 
   ActionShout() : super(2, 40) {
     classroom.teacher.damage(PRICE);
@@ -134,9 +134,9 @@ class ActionShout extends Action {
 
 class ActionChalk extends Action {
 
-  static const num PRICE = 70;
+  static const num PRICE = 30;
 
-  ActionChalk() : super(1, 50) {
+  ActionChalk() : super(1, 70) {
     classroom.teacher.damage(PRICE);
   }
 
