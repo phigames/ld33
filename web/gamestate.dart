@@ -44,6 +44,9 @@ class GamestateEnd extends Gamestate {
     bufferContext.fillStyle = '#9D2F39';
     bufferContext.font = '45px "Special Elite"';
     bufferContext.fillText("You're fired", 430, 300);
+    bufferContext.fillStyle = '#000';
+    bufferContext.font = '20px "Special Elite"';
+    bufferContext.fillText("PS: You won the game", 300, 435);
   }
 
 }
